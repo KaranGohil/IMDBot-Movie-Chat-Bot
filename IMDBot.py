@@ -4,10 +4,12 @@ import person as p
 import company as c
 import user as u
 import ner
+import wiki as w
 import spellinghandler as sp
 import synonyms as sy
 import postagging as pt
 from chatterbot import ChatBot
+import googleTranslator as gt
 
 bot = ChatBot('MovieBot')
 print('IMDBot: Hello There! My name is IMDBot. ', end='')
@@ -18,7 +20,8 @@ print(f'I am a bot who knows all about movies. How can I help you today?') #conc
 
 while True:
     try:
-        raw_user_input = input(f'{userName}: ') #collect user input for this iteration.
+        anyLang_user_input = input(f'{userName}: ') #collect user input for this iteration.
+        raw_user_input = gt.detector(anyLang_user_input) # detects the language used and translate it into English
         entities = ner.listEntities(raw_user_input)
         movie_name = ner.getMovieName(raw_user_input)
         person_name = ner.getPersonName(raw_user_input)
@@ -151,7 +154,11 @@ while True:
                 movie = f.giveSummary(movie)
             else:
                 print('IMDBot: Sorry, I don\'t know which movie you\'re asking about. Try to ask me to find a movie :)')
-
+        
+        elif (('wiki' in raw_user_input) or ('wikipedia' in raw_user_input) or ('Wikipedia' in raw_user_input)): # can you find wikipedia/wiki page of {any name which exists}
+            randSearch = raw_user_input.split("of ")[1] ## can you find wikipedia/wiki page of {any name for which page exists} cuts to {any name for which page exists}
+            w.findPageAndUrl(randSearch)
+            
         else:
             #print("ELSE")
             bot.get_response(raw_user_input)

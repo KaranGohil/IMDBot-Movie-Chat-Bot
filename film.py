@@ -1,5 +1,6 @@
 import imdb
 import synonyms as sy
+import wiki as w
 
 ia = imdb.IMDb() # Initializes the IMDb integration through an IMDbPy method
 
@@ -12,6 +13,7 @@ def findMovie(userName): # Finds the movie requested by the user
         return ''
     else: 
         title = movie['title']
+        w.findPageAndUrl(title)
         print(f'IMDBot: Ok! What do you want to know about {title}?') # confirms the movie
         return movie # returns movie object
 
@@ -62,6 +64,7 @@ def findDirector(movie):
     try:
         if (len(movie['directors']) == 1):
             print('IMDBot: The director of ' + movie['title'] + ' is ' + movie['directors'][0]['name']) # outputs this if the movie has only one director
+            w.findPageAndUrl(movie['directors'][0]['name'])
             print('What would you like to know about the director?')
             return movie['directors'][0]
         else:
@@ -73,6 +76,7 @@ def findDirector(movie):
                     dirList += 'and ' + director['name']
                 c += 1
             print('IMDBot: The directors of ' + movie['title'] + ' are ' + dirList)
+            w.findPageAndUrl(movie['directors'][0]['name']) # return wiki info and link of the first director
             print('IMDBot: What would you like to know about the main director of ' + movie['title'] + '?')
             return movie['directors'][0] # returns a person object in case of follow up questions (can only return one director properly or other functions might not work)
     except:
@@ -103,6 +107,7 @@ def showCharacters(movie):
             if (str(character).find('Various') != -1) or (str(character).find('Additional') != -1): #not including any various or additional background characters in this list
                 break
             else:
+                w.findPageAndUrl(actor)
                 print(f'\t{character} played by {actor}')
             castID += 1
     except:

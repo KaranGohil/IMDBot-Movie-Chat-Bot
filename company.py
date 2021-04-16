@@ -1,5 +1,6 @@
 import imdb
 import synonyms as sy
+import wiki as w
 
 ia = imdb.IMDb()
 
@@ -15,6 +16,7 @@ def findCompany(movie): # Find the companies that produce the given movie
             return 'No Production'
         else:
             print("IMDBot: The production company is: " + companies[0]['name'])
+            w.findPageAndUrl(companies[0]['name'])
             return companies[0]['name']
 
         return companies[0]['name'] # return the main company of the movie production
