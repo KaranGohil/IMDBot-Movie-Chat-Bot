@@ -8,8 +8,9 @@ def detector(sen):
     translations = translator.translate(sen, dest='en')
     return translations.text
 
-#This function translate english sentences into desire language
-def translateInto(sen):
-    pass
+#Gets the source language from the input sentence and send into wiki.py
+def getSrcLang(sen):
+    translations = translator.translate(sen)
+    return translations.src
 
 

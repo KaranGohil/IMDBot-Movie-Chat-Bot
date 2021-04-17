@@ -20,7 +20,7 @@ print(f'I am a bot who knows all about movies. How can I help you today?') #conc
 
 while True:
     try:
-        anyLang_user_input = input(f'{userName}: ') #collect user input for this iteration.
+        anyLang_user_input = input(f'{userName}: ') #collect user input for this iteration.(in any Language)
         raw_user_input = gt.detector(anyLang_user_input) # detects the language used and translate it into English
         entities = ner.listEntities(raw_user_input)
         movie_name = ner.getMovieName(raw_user_input)
@@ -158,6 +158,16 @@ while True:
         elif (('wiki' in raw_user_input) or ('wikipedia' in raw_user_input) or ('Wikipedia' in raw_user_input)): # can you find wikipedia/wiki page of {any name which exists}
             randSearch = raw_user_input.split("of ")[1] ## can you find wikipedia/wiki page of {any name for which page exists} cuts to {any name for which page exists}
             w.findPageAndUrl(randSearch)
+            print("IMDBot: What else I can help you with?")
+            res = input(f'{userName}: ')
+            if('different Language' in res):
+                print('IMDBot: Which language? (Please only type the language (i.e German))')
+                lang = input(f'{userName}: ')
+                w.findLinkDifLang(randSearch,lang)
+            else:
+                print(f'IMDBot: Ok. How can I help?')
+            
+
             
         else:
             #print("ELSE")

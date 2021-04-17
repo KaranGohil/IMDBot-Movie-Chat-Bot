@@ -1,4 +1,5 @@
 import wikipediaapi
+import googletrans as gt
 
 wiki = wikipediaapi.Wikipedia('en')
 
@@ -21,3 +22,20 @@ def findPageAndUrl(search):
             print("IMDBot: Is there is anything else I can help with?")
     else:
         print("page can not be found")
+
+
+#find the link/URL of wikipedia in different language and
+def findLinkDifLang(search, destLang):
+    lang = gt.LANGUAGES  #dict of googletrans libararies provided by the API
+    exLang = dict((v,k) for k,v in lang.items()) #exchange the key and value's position
+
+    if(destLang.lower() in exLang):
+        langCode = exLang[destLang.lower()] #gets the language code 
+        pageSearch = wiki.page(search)
+        langlinks = pageSearch.langlinks
+        l = langlinks[langCode]
+        print(destLang + " - " + l.title + ": "+l.fullurl)
+
+   
+    #srcLang = 
+
