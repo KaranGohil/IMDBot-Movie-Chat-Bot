@@ -180,3 +180,5 @@ To see the class structure of the IMDb integration, take a look at the [UML Diag
 - Larger corpora for the trainers
 - Additional API integrations
 - POS Tagging improvements regarding interfunctionality
+- More Wikipedia features
+- Improve googleTranslator.py in order to carry conversation with bot in different language 
