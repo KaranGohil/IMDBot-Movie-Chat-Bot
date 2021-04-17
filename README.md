@@ -29,6 +29,8 @@ For this project, we created a responsive and interactive chatbot using Python w
 - spaCy 3.0.5 **with** Pipelines en_core_web_sm 3.0.0
 - pyspellchecker 0.6.1 
 - chatterbot 1.0.2
+- Wikipedia-API 0.5.4
+- googletrans 3.1.0a0
 
 
 ## Setup
@@ -46,6 +48,10 @@ For this project, we created a responsive and interactive chatbot using Python w
 > $ pip install pyspellchecker
 
 > $ pip install nltk
+
+> $ pip install wikipedia-API
+
+> $ pip3 install googletrans==3.1.0a0 
 
 > $ pip install chatterbot
 
@@ -112,6 +118,16 @@ To see the class structure of the IMDb integration, take a look at the [UML Diag
 
 - This class finds production companies and whether they worked on specific movies, and can look for a certain movie in the company's repertoire.
 
+#### wiki.py
+
+- Search the desired Wikipedia Page and the link to the page using wikipedia-API.
+- This also find desired Wikipedia Page in different language with the help of googletrans API.
+
+#### googleTranslator.py
+
+- This class detects any language and convert into English.
+
+
 ### Natural Language Processing
 
 #### ner.py
@@ -132,6 +148,7 @@ To see the class structure of the IMDb integration, take a look at the [UML Diag
 
 - Facilitates the breaking down of a sentence into its basic parts, it can tag nouns, verbs, etc.
 - This makes the bot more able to understand the subject and reason for a user input, making commands easier to communicate.
+
 
 #### Trainers/Utility
 
