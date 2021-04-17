@@ -35,7 +35,5 @@ def findLinkDifLang(search, destLang):
         langlinks = pageSearch.langlinks
         l = langlinks[langCode]
         print(destLang + " - " + l.title + ": "+l.fullurl)
-
-   
-    #srcLang = 
+ 
 
